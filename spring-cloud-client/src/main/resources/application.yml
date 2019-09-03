@@ -1,0 +1,19 @@
+
+server:
+  port: 8764
+
+eureka:
+  client:
+    eureka-server-connect-timeout-seconds: 1
+    eureka-server-read-timeout-seconds: 5
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+    register-with-eureka: false
+
+ribbon:
+  ServerListRefreshInterval: 1000 # 服务信息刷新时间
+  ConnectTimeout: 1000 # 服务连接超时时间
+  ReadTimeout: 5000 # 服务读超时时间
+  OkToRetryOnAllOperations: false # 是否在所有操作上重试
+  MaxAutoRetries : 0 # 同一个节点上的重试次数
+  MaxAutoRetriesNextServer: 1 # 重试几个不同的节点

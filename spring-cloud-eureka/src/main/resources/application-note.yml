@@ -1,0 +1,55 @@
+
+server:
+  port: 8061
+spring:
+  application:
+    name: cloud.eureka.demo
+
+eureka:
+  instance:
+#    instance-id: hostname:spring-appname:port
+#    appname: spring-appname
+    lease-renewal-interval-in-seconds: 3 # 心跳间隔时间
+    lease-expiration-duration-in-seconds: 10 # 心跳过期时间
+#    hostname: localhost # 指定域名
+#    ip-address: 127.0.0.1 # 指定ip
+    prefer-ip-address: true # 使用ip而非域名注册服务
+  client:
+    registry-fetch-interval-seconds: 1 # 服务信息刷新间隔时间
+#    instanceInfoReplicationIntervalSeconds: 30 # 当前服务状态刷新间隔时间
+#    initialInstanceInfoReplicationIntervalSeconds : 40 # 当前服务状态首次刷新间隔时间
+#    eurekaServiceUrlPollIntervalSeconds: 300 # eureka地址刷新间隔时间
+#    g-zip-content: true # 是否启用压缩
+    eurekaServerConnectTimeoutSeconds: 1 # eureka连接超时时间
+    eurekaServerReadTimeoutSeconds: 5 # eureka读超时时间
+#    register-with-eureka: true # 是否注册当前服务
+#    fetch-registry: true # 是否刷新服务信息
+#    heartbeatExecutorThreadPoolSize: 2 # 心跳线程数量
+    heartbeatExecutorExponentialBackOffBound: 1 # 心跳失败后成倍增加心跳时间直至心跳恢复正常
+#    cacheRefreshExecutorThreadPoolSize: 2 # 服务信息刷新线程数量
+    cacheRefreshExecutorExponentialBackOffBound: 1 # 刷新失败后成倍增加刷新时间直至刷新恢复正常
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+  server:
+    enable-self-preservation: false # 是否启用保护模式,当实际的心跳临界值低于预设的心跳临界值时,保护模式被激活,前提是此属性为true
+#    renewal-percent-threshold: 0.85 # 心跳临界值=心跳节点数/总节点数
+#    renewal-threshold-update-interval-ms:  15 * 60 * 1000 # 心跳临界值刷新间隔时间
+#    peer-eureka-nodes-update-interval-ms: 10 * 60 * 1000 # eureka节点刷新间隔时间
+#    enable-replicated-request-compression: false # 是否在eureka集群间通信启用压缩
+#    wait-time-in-ms-when-sync-empty: 5 * 60 * 1000 # eureka集群同步完成之前的等待时间
+#    peer-node-read-timeout-ms: 200 # eureka节点读超时时间
+#    peer-node-connect-timeout-ms: 200 # eureka节点连接超时时间
+#    delta-retention-timer-interval-in-ms: 30 * 1000 # 服务增量改变的刷新间隔时间
+#    retention-time-in-m-s-in-delta-queue: 3 * 60 * 1000 # 服务增量改变的有效时间
+    eviction-interval-timer-in-ms: 5000 # 服务节点刷新间隔时间,当保护模式激活时,节点信息不会再被刷新
+#    response-cache-auto-expiration-in-seconds: 180 # 服务'读写缓存'刷新间隔时间
+#    response-cache-update-interval-ms: 30 * 1000 # 服务'读缓存'刷新间隔时间,当useReadOnlyResponseCache=true时生效
+    use-read-only-response-cache: false # 是否启用服务'读缓存'
+#    max-threads-for-status-replication: 1 #
+#    max-elements-in-status-replication-pool: 10000 #
+    sync-when-timestamp-differs: true #
+#    registry-sync-retries: 0 # 同步重试次数
+#    registry-sync-retry-wait-ms: 30 * 1000 # 同步等待时间
+#    max-elements-in-peer-replication-pool: 10000 # eureka集群间通信任务的最大数量
+#    max-threads-for-peer-replication: 20 # 处理eureka集群间通信任务的线程数量
+#    max-time-for-replication: 30000 # eureka集群间通信任务的执行时间

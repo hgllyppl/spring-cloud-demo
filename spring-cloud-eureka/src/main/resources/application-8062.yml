@@ -1,0 +1,12 @@
+
+server:
+  port: 8062
+  replica-port: 8061
+spring:
+  application:
+    name: com.spring.cloud.eureka.demo
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:${server.replica-port}/eureka/
