@@ -2,26 +2,32 @@ package com.spring.cloud.client.demo;
 
 import com.spring.cloud.api.demo.RequestObject;
 import com.spring.cloud.api.demo.ResultObject;
-import com.spring.cloud.api.demo.dto.HelloDTO;
-import com.spring.cloud.api.demo.service.HelloService;
+import com.spring.cloud.api.demo.dto.ClassDTO;
+import com.spring.cloud.api.demo.dto.StudentDTO;
+import com.spring.cloud.api.demo.service.ClassService;
+import com.spring.cloud.api.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("client")
 public class ClientController {
 
     @Autowired
-    private HelloService helloService;
+    private StudentService studentService;
 
-    @RequestMapping("hello")
-    public ResultObject hello(String name) {
-        HelloDTO helloDTO = new HelloDTO().setName(name);
-        RequestObject<HelloDTO> requestObject = new RequestObject<HelloDTO>().setRequestId(UUID.randomUUID().toString()).setData(helloDTO);
-        ResultObject<String> resultObject = helloService.hello(requestObject);
-        return resultObject;
+    @Autowired
+    private ClassService classService;
+
+    @RequestMapping("queryStudent")
+    public ResultObject<StudentDTO> queryStudent(Integer id) {
+        int ret = studentService.calculateScore(3, id);
+        return studentService.queryStudent(new RequestObject<Integer>().setData(ret));
+    }
+
+    @RequestMapping("queryClass")
+    public ResultObject<ClassDTO>  queryClass(Integer id) {
+        return classService.queryClass(id);
     }
 }
