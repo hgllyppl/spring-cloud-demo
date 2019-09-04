@@ -22,7 +22,7 @@
 		</dependency>
 		<dependency>
 			<groupId>spring-cloud-demo</groupId>
-			<artifactId>spring-cloud-sdk</artifactId>
+			<artifactId>spring-cloud-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
