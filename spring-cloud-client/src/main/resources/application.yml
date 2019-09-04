@@ -10,6 +10,14 @@ eureka:
       defaultZone: http://localhost:8061/eureka/
     register-with-eureka: false
 
+feign:
+  client:
+    config:
+      StudentService:
+          connect-timeout: 5000
+          read-timeout: 50000
+
+
 ribbon:
   ServerListRefreshInterval: 1000 # 服务信息刷新时间
   ConnectTimeout: 1000 # 服务连接超时时间
