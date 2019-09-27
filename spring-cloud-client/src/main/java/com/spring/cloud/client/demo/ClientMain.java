@@ -7,7 +7,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-// 注意, 此行为包的扫描路径, 不是域名路径
 @EnableFeignClients("com.spring.cloud.api.demo")
 public class ClientMain {
 
