@@ -24,4 +24,12 @@ public class StudentServiceImpl implements StudentService {
                         .setSex(1)
                 );
     }
+
+    @Override
+    public ResultObject<Void> addStudent(Integer id, String name) {
+        return new ResultObject<Void>()
+                .setCode(ResultObject.SUCCESS_CODE)
+                .setMsg(ResultObject.SUCCESS_MSG)
+                ;
+    }
 }

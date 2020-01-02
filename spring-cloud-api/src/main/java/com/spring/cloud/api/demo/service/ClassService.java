@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Created by xin on 2019/9/4.
  */
-@FeignClient(contextId = "ClassService", serviceId = "api.springcloud.com")
+@FeignClient(value = "api.springcloud.com", contextId = "ClassService")
 @RequestMapping("ClassService")
 public interface ClassService {
 
     @RequestMapping(value = "queryClass", method = RequestMethod.POST)
-    ResultObject<ClassDTO> queryClass(@RequestParam("id") Integer id);
+    ResultObject<ClassDTO> queryClass(@RequestParam("id") Integer id, @RequestParam String name);
 }
