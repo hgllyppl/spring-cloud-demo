@@ -3,9 +3,7 @@ package com.spring.cloud.api.demo.service;
 import com.spring.cloud.api.demo.RequestObject;
 import com.spring.cloud.api.demo.ResultObject;
 import com.spring.cloud.api.demo.dto.StudentDTO;
-import feign.Param;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +20,7 @@ public interface StudentService {
     ResultObject<StudentDTO> queryStudent(@RequestBody RequestObject<Integer> requestObject);
 
     @RequestMapping(value = "addStudent")
-    ResultObject<Void> addStudent(@RequestParam("id") Integer id, @RequestParam("id") String name);
+    ResultObject<Void> addStudent(@RequestParam("id") Integer id, @RequestParam("name") String name);
 
     default int calculateScore(int score1, int score2) {
         return score1 * score2;
