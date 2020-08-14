@@ -1,6 +1,6 @@
 
 server:
-  port: 8764
+  port: 8175
 
 eureka:
   client:
@@ -10,15 +10,15 @@ eureka:
       defaultZone: http://localhost:8061/eureka/
     register-with-eureka: false
 
-feign:
-  client:
-    config:
-      StudentService:
-          connect-timeout: 5000
-          read-timeout: 50000
+# feign-client自定义配置与ribbon配置冲突，不可同时配置
+#feign:
+#  client:
+#    config:
+#      StudentService:
+#        connect-timeout: 1000
+#        read-timeout: 5000
 
-
-ribbon:
+api.springcloud.com.ribbon:
   ServerListRefreshInterval: 1000 # 服务信息刷新时间
   ConnectTimeout: 1000 # 服务连接超时时间
   ReadTimeout: 5000 # 服务读超时时间
